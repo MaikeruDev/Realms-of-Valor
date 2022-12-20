@@ -1,0 +1,41 @@
+{
+    "npcs": [
+      {
+        "name": "Bob",
+        "appearance": "A friendly looking farmer",
+        "interactions": [
+          {
+            "text": "Hello! How's your day going?",
+            "response": "It's going well, thanks for asking."
+          },
+          {
+            "text": "Do you have any food for sale?",
+            "response": "Yes, I have some fresh vegetables and fruit. Would you like to buy some?"
+          },
+          {
+            "text": "Do you know where I can find the nearest town?",
+            "response": "The nearest town is a few miles to the east. Just follow the main road and you should be able to find it."
+          }
+        ]
+      },
+      {
+        "name": "Alice",
+        "appearance": "A charming young woman with a mischievous smile",
+        "interactions": [
+          {
+            "text": "Hello! Can you tell me more about this place?",
+            "response": "Certainly! This is the village of Oakdale, a peaceful place known for its friendly inhabitants and beautiful countryside."
+          },
+          {
+            "text": "Do you have any quests or tasks that need to be done?",
+            "response": "I'm sorry, but I don't have any quests or tasks to give out at the moment. However, you might try speaking with some of the other villagers - they might have something for you to do."
+          },
+          {
+            "text": "Do you have any advice for a newcomer like me?",
+            "response": "Welcome to Oakdale! My advice is to be friendly and helpful, and you should find that the people here are very welcoming. And always be on the lookout for opportunities to help out and make new friends!"
+          }
+        ]
+      }
+    ]
+  }
+  
