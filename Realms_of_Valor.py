@@ -1,5 +1,5 @@
 # Import necessary modules
-import sys, os, pickle
+import sys, os, pickle, json
 
 clear = lambda: os.system('cls')
 
@@ -7,63 +7,14 @@ clear = lambda: os.system('cls')
 current_room = "south" 
 
 # Define dictionary of rooms
-rooms = {
-    "south": {
-        "description": "You are in a dark room. There is a door to the north and a door to the east.",
-        "information": "You almost can't see much in this room. On your right is a desk\nbut overall, you can't tell how the room looks like.",
-        "exits": ["north", "east"],
-        "items": [],
-        "objects": [{"name": "desk", "used": False}],
-        "hint": "Look around the room for clues.",
-        "requirement": [],
-        "requirement_message": ""
-    },
-    "north": {
-        "description": "You are in a bright room. There is a door to the south and a door to the west.",
-        "information": "You can clearly see everything in here.\nThere is a bookshelf in this room.",
-        "exits": ["south", "west"],
-        "items": [{"name": "east_door_key", "category": "keys"}],
-        "objects": [{"name": "bookshelf", "used": False}],
-        "hint": "Search the bookshelf for a clue.",
-        "requirement": [], 
-        "requirement_message": ""
-    },
-    "east": {
-        "description": "You are in a damp room. There is a door to the west and a door to the north.",
-        "information": "The room is oddly damp and there is not much in it.\nThere is a chair and a torch on the other side.",
-        "exits": ["west", "north"],
-        "items": [{"name": "torch", "category": "generals"}],
-        "objects": [{"name": "chair", "used": False}],
-        "hint": "Try sitting in the chair to see if it helps.",
-        "requirement": [{"name": "east_door_key", "category": "keys"}],
-        "requirement_message": "In order to open this door you need an east door key."
-    },
-    "west": {
-        "description": "You are in a cold room. There is a door to the east and a door to the north.",
-        "information": "The room feels very cold and you slightly start to freeze.\nThere is a samll table on your right.",
-        "exits": ["east", "north"],
-        "items": [],
-        "objects": [{"name": "table", "used": False}],
-        "hint": "Maybe try to take a look onto the table.",
-        "requirement": [],
-        "requirement_message": ""
-    }
-}
+f_rooms = open("rooms.json") 
+rooms = json.load(f_rooms)
+ 
+# Define Items for Interactions
+f_object_items = open("objects\items.json") 
+object_items = json.load(f_object_items)
 
-object_interactions = {
-    "desk": "You search the desk and find a pencil.",
-    "bookshelf": "You browse the bookshelf and find a book on ancient history.",
-    "chair": "You sit in the chair and feel more relaxed.",
-    "table": "You examine the table and find a piece of paper with a puzzle on it."
-}
-
-object_items = {
-    "desk": {"name": "pencil", "category": "generals"},
-    "bookshelf": {"book": "pencil", "category": "generals"},
-    "chair": {"name": "cushion", "category": "generals"},
-    "table": {"name": "paper", "category": "generals"},
-}
-
+# Define Inventory
 inventory_categories = {
     "keys": [],
     "weapons": [],
@@ -85,8 +36,7 @@ def save(filename):
     # Create a dictionary to store the game state
     data = {
         "current_room": current_room,
-        "rooms": rooms,
-        "object_interactions": object_interactions,
+        "rooms": rooms, 
         "object_items": object_items,
         "inventory_categories": inventory_categories
     }
@@ -98,11 +48,7 @@ def save(filename):
 
 # Define a function to load game
 def load(filename):
-    if not os.path.exists(filename):
-            print("Save file not found.")
-            return
-
-    global current_room, rooms, object_interactions, object_items, inventory_categories
+    global current_room, rooms, object_items, inventory_categories
 
     # Open the file in read mode
     with open(filename, "rb") as file:
@@ -112,7 +58,6 @@ def load(filename):
     # Assign the values from the dictionary to the corresponding variables
     current_room = data["current_room"]
     rooms = data["rooms"]
-    object_interactions = data["object_interactions"]
     object_items = data["object_items"]
     inventory_categories = data["inventory_categories"]
 
@@ -214,13 +159,11 @@ def interact(object_name):
                 print("You have already interacted with this object.")
                 return
             # Set the used flag to True
-            obj["used"] = True
-            # Check if the object has an interaction message
-            if object_name in object_interactions:
-                print(object_interactions[object_name])
+            obj["used"] = True 
             # Check if the object has an associated item
             if object_name in object_items:
                 item = object_items[object_name] 
+                print(object_items[object_name]["interaction"])
                 add_to_inventory(item)
             else:
                 print("You didn't find anything.")
@@ -239,6 +182,7 @@ print_room(rooms[current_room])
 # Define main game loop
 while True:
     command = input("> ").split()
+    print("")
     if command[0] == "go" or command[0] == "walk" or command[0] == "move":
         move(command[1])
     elif command[0] == "take":
@@ -264,4 +208,5 @@ while True:
     elif command[0] == "quit":
         sys.exit()
     else:
-        print("I don't understand that command.")
+        print("I don't understand that command.") 
+    print("")
