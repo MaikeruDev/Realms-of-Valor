@@ -7,15 +7,18 @@
         "responses": [
             {
               "text": "I'm doing well, thanks for asking.",
-              "callback": "function1"
+              "callback": "npc_answer",
+              "arguments": "That's great to hear!."
             },
             {
               "text": "I'd like to buy some food.",
-              "callback": "function2"
+              "callback": "npc_answer",
+              "arguments": "Sure, I have some bread and cheese."
             },
             {
               "text": "Do you know where the nearest town is?",
-              "callback": "function3"
+              "callback": "npc_answer",
+              "arguments": "Follow the road towards west.\nThere you will find a town called Hinglu.\nGood luck traveller!"
             }
           ]
       },
@@ -28,15 +31,18 @@
         "responses": [
             {
               "text": "I'm doing well, thanks for asking.",
-              "callback": "function1"
+              "callback": "npc_answer",
+              "arguments": "That's great to hear!."
             },
             {
               "text": "I'd like to buy some food.",
-              "callback": "function2"
+              "callback": "npc_answer",
+              "arguments": "Sure, I have some bread and cheese."
             },
             {
               "text": "Do you know where the nearest town is?",
-              "callback": "function3"
+              "callback": "npc_answer",
+              "arguments": "Follow the road towards west.\nThere you will find a town called Hinglu.\nGood luck traveller!"
             }
           ]
       }

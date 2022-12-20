@@ -48,8 +48,13 @@ def talk_to_npc_by_name(name):
   # Find the NPC's ID using the find_npc_by_name function
   npc_id = find_npc_by_name(name)
   if npc_id is not None:
-    # Call the talk_to_npc function if the NPC was found
-    talk_to_npc(npc_id)
+    # Check if the npc is in the current room
+    if current_room == npcs[npc_id]["location"]:
+        # Call the talk_to_npc function if the NPC was found and is in this room
+        talk_to_npc(npc_id)
+    else:
+        # Display an error message if the NPC was not found
+        print("There is no NPC with the name '" + name + "'.")
   else:
     # Display an error message if the NPC was not found
     print("There is no NPC with the name '" + name + "'.")
@@ -60,18 +65,25 @@ def talk_to_npc(npc_id):
   npc = npcs[npc_id]
   
   # Display the NPC's name and dialogue
-  print("You are talking to " + npc["name"] + ".")
+  print("You are talking to " + npc["name"] + ".\n")
   print(npc["dialogue"])
   
   # Display the player's choices
   for i, response in enumerate(npc["responses"]):
-    print(str(i+1) + ": " + response)
+    print(str(i+1) + ": " + response["text"])
   
   # Get the player's choice
   choice = int(input())
+
+  print("")
   
   # Execute the chosen response
-  npc["responses"][choice-1]["callback"]()
+  callback_name = npc["responses"][choice-1]["callback"]
+  callback_function = globals()[callback_name]
+  callback_function(npc["responses"][choice-1]["arguments"])
+
+def npc_answer(answer):
+    print(answer)
 
 # Define a function to add items to the inventory
 def add_to_inventory(item):
@@ -255,7 +267,7 @@ while True:
     elif command[0] == "interact":
         interact(command[1])
     elif command[0] == "talk":
-        talk_to_npc_by_name("Bob")
+        talk_to_npc_by_name(command[1])
     elif command[0] == "load":
         load("save.dat")
         print("Game loaded.")
