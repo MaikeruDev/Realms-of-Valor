@@ -82,6 +82,7 @@ def talk_to_npc(npc_id):
   callback_function = globals()[callback_name]
   callback_function(npc["responses"][choice-1]["arguments"])
 
+# Define a function for the npc to answer
 def npc_answer(answer):
     print(answer)
 
