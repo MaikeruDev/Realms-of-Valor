@@ -1,0 +1,42 @@
+{
+    "south": {
+        "description": "You are in a dark room. There is a door to the north and a door to the east.",
+        "information": "You almost can't see much in this room. On your right is a desk\nbut overall, you can't tell how the room looks like.",
+        "exits": ["north", "east"],
+        "items": [],
+        "objects": [{"name": "desk", "used": false}],
+        "hint": "Look around the room for clues.",
+        "requirement": [],
+        "requirement_message": ""
+    },
+    "north": {
+        "description": "You are in a bright room. There is a door to the south and a door to the west.",
+        "information": "You can clearly see everything in here.\nThere is a bookshelf in this room.",
+        "exits": ["south", "west"],
+        "items": [{"name": "east_door_key", "category": "keys"}],
+        "objects": [{"name": "bookshelf", "used": false}],
+        "hint": "Search the bookshelf for a clue.",
+        "requirement": [], 
+        "requirement_message": ""
+    },
+    "east": {
+        "description": "You are in a damp room. There is a door to the west and a door to the north.",
+        "information": "The room is oddly damp and there is not much in it.\nThere is a chair and a torch on the other side.",
+        "exits": ["west", "north"],
+        "items": [{"name": "torch", "category": "generals"}],
+        "objects": [{"name": "chair", "used": false}],
+        "hint": "Try sitting in the chair to see if it helps.",
+        "requirement": [{"name": "east_door_key", "category": "keys"}],
+        "requirement_message": "In order to open this door you need an east door key."
+    },
+    "west": {
+        "description": "You are in a cold room. There is a door to the east and a door to the north.",
+        "information": "The room feels very cold and you slightly start to freeze.\nThere is a samll table on your right.",
+        "exits": ["east", "north"],
+        "items": [],
+        "objects": [{"name": "table", "used": false}],
+        "hint": "Maybe try to take a look onto the table.",
+        "requirement": [],
+        "requirement_message": ""
+    }
+}

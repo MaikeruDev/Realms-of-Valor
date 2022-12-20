@@ -1,0 +1,6 @@
+{
+    "desk": {"name": "pencil", "category": "generals", "interaction": "You search the desk and find a pencil."},
+    "bookshelf": {"book": "pencil", "category": "generals", "interaction": "You browse the bookshelf and find a book on ancient history."},
+    "chair": {"name": "cushion", "category": "generals", "interaction":"You sit in the chair and feel more relaxed."},
+    "table": {"name": "paper", "category": "generals", "interaction": "You examine the table and find a piece of paper with a puzzle on it."}
+}
