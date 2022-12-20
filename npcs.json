@@ -1,7 +1,7 @@
 {
-    "npcs": [
-      {
+    "1": {
         "name": "Bob",
+        "location":"north",
         "appearance": "A friendly looking farmer",
         "interactions": [
           {
@@ -18,24 +18,26 @@
           }
         ]
       },
-      {
+      "2": {
+        "id": 2,
         "name": "Alice",
+        "location":"south",
         "appearance": "A charming young woman with a mischievous smile",
         "interactions": [
-          {
+        {
             "text": "Hello! Can you tell me more about this place?",
             "response": "Certainly! This is the village of Oakdale, a peaceful place known for its friendly inhabitants and beautiful countryside."
-          },
-          {
+        },
+        {
             "text": "Do you have any quests or tasks that need to be done?",
             "response": "I'm sorry, but I don't have any quests or tasks to give out at the moment. However, you might try speaking with some of the other villagers - they might have something for you to do."
-          },
-          {
+        },
+        {
             "text": "Do you have any advice for a newcomer like me?",
             "response": "Welcome to Oakdale! My advice is to be friendly and helpful, and you should find that the people here are very welcoming. And always be on the lookout for opportunities to help out and make new friends!"
-          }
+        }
         ]
       }
-    ]
   }
   
+

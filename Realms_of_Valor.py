@@ -14,6 +14,10 @@ rooms = json.load(f_rooms)
 f_object_items = open("objects\items.json") 
 object_items = json.load(f_object_items)
 
+# Define NPCs
+f_npcs = open("npcs.json") 
+npcs = json.load(f_npcs)
+
 # Define Inventory
 inventory_categories = {
     "keys": [],
@@ -21,6 +25,13 @@ inventory_categories = {
     "potions": [],
     "generals": []
 }
+
+# Define a function to find npcs in a room
+def get_current_room_npc():
+    for npc_id, npc in npcs.items():  # iterate over the NPCs in the npcs dictionary 
+        if npc["location"] == current_room:  # access the location field using the correct key
+            return npc
+    return None  # no NPC found in the current room
 
 # Define a function to add items to the inventory
 def add_to_inventory(item):
@@ -124,6 +135,12 @@ def look():
     print("------ LOOK -------")
     print(rooms[current_room]["description"], "\n")
     print(rooms[current_room]["information"], "\n") 
+    
+    npc = get_current_room_npc()
+    if npc:
+        # Print the NPC's description
+        print(f"There is a {npc['name']} here.\n")
+
     print("Exits:", ", ".join(rooms[current_room]["exits"])) 
     print("-------------------")
 
