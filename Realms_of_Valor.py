@@ -33,6 +33,46 @@ def get_current_room_npc():
             return npc
     return None  # no NPC found in the current room
 
+# Define a function to find npcs by name
+def find_npc_by_name(name):
+  # Iterate through the NPCs and check their names
+  for npc_id, npc in npcs.items():
+    if npc["name"] == name:
+      # Return the NPC's ID if the names match
+      return npc_id
+  # Return None if no matching NPC is found
+  return None
+
+# Define a function to talk to npcs
+def talk_to_npc_by_name(name):
+  # Find the NPC's ID using the find_npc_by_name function
+  npc_id = find_npc_by_name(name)
+  if npc_id is not None:
+    # Call the talk_to_npc function if the NPC was found
+    talk_to_npc(npc_id)
+  else:
+    # Display an error message if the NPC was not found
+    print("There is no NPC with the name '" + name + "'.")
+
+# Define a function to talk to a npc
+def talk_to_npc(npc_id):
+  # Retrieve the NPC data from the dictionary
+  npc = npcs[npc_id]
+  
+  # Display the NPC's name and dialogue
+  print("You are talking to " + npc["name"] + ".")
+  print(npc["dialogue"])
+  
+  # Display the player's choices
+  for i, response in enumerate(npc["responses"]):
+    print(str(i+1) + ": " + response)
+  
+  # Get the player's choice
+  choice = int(input())
+  
+  # Execute the chosen response
+  npc["responses"][choice-1]["callback"]()
+
 # Define a function to add items to the inventory
 def add_to_inventory(item):
     # Check if the item is in the inventory_categories dictionary
@@ -214,6 +254,8 @@ while True:
         print_inventory()
     elif command[0] == "interact":
         interact(command[1])
+    elif command[0] == "talk":
+        talk_to_npc_by_name("Bob")
     elif command[0] == "load":
         load("save.dat")
         print("Game loaded.")
@@ -226,4 +268,4 @@ while True:
         sys.exit()
     else:
         print("I don't understand that command.") 
-    print("")
+    print("") 
