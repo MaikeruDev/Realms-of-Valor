@@ -98,6 +98,10 @@ def save(filename):
 
 # Define a function to load game
 def load(filename):
+    if not os.path.exists(filename):
+            print("Save file not found.")
+            return
+
     global current_room, rooms, object_interactions, object_items, inventory_categories
 
     # Open the file in read mode
